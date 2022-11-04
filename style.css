@@ -43,6 +43,11 @@ h1 {
   margin-top: 0.5rem;
 }
 
+button {
+  width: 6rem;
+  height: 2rem;
+}
+
 @media screen and (max-width: 600px) {
   h1 {
     font-size: 1.5rem;
