@@ -22,7 +22,6 @@ function imageLoaded() {
   if (imagesLoaded === totalImages) {
     ready = true;
     loader.hidden = true;
-    count = 20;
   }
 }
 
@@ -51,19 +50,18 @@ const setAttributes = (element, attributes) => {
 const displayPhotos = () => {
   totalImages = photosArray.length;
   photosArray.forEach((photo) => {
+    const i = 0;
     const imgBox = document.createElement("div");
-
+    imgBox.classList.add("imgBox");
     const item = document.createElement("a");
-    // item.setAttribute("href", photo.links.html);
-    // item.setAttribute("target", "blank");
+
     setAttributes(item, {
       href: photo.links.html,
       target: "_blank",
     });
 
     const img = document.createElement("img");
-    // img.setAttribute("src", photo.urls.regular);
-    // img.setAttribute("alt", photo.alt_description);
+
     setAttributes(img, {
       src: photo.urls.regular,
       alt: photo.alt_description,
@@ -72,16 +70,23 @@ const displayPhotos = () => {
 
     img.addEventListener("load", imageLoaded);
 
-    // const button = document.createElement("button");
-    // button.textContent = "download me";
-    // //button.setAttribute("onclick", window.open(photo.links.download));
+    const button = document.createElement("button");
+    button.textContent = "download me";
+    button.addEventListener("click", () => {
+      window.open(photo.links.download);
+    });
 
     item.appendChild(img);
     imgBox.appendChild(item);
-    //imgBox.appendChild(button);
+    imgBox.appendChild(button);
     imageContainer.appendChild(imgBox);
   });
 };
+
+//Download Button
+// const downloadImage = () => {
+//   window.open(photosArray[0].links.download);
+// };
 
 //Check to see if scrolling near bottom of page, load more photos
 window.addEventListener("scroll", () => {
